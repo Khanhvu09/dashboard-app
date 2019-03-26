@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-function SignUp(props){
+function SignIn(props){
     return (
         <div>
             <Link to='/login'>Sign In</Link>
@@ -10,4 +10,4 @@ function SignUp(props){
     )
 }
 
-export default SignUp
+export default SignIn

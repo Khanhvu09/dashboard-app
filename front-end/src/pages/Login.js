@@ -11,6 +11,7 @@ class Login extends Component {
             showAlert: false
         }
     }
+    
 
     login = (formData) =>{
         console.log('login action is running')
@@ -19,7 +20,7 @@ class Login extends Component {
             url: `http://localhost:4000/login`,
             data: formData
         }).then((res)=>{
-            console.log(res.data.msg)
+            console.log(res)
             if(res.data.msg === 'baduser'){
                 this.setState({
                     msg: 'Email does not exist',
@@ -31,17 +32,26 @@ class Login extends Component {
                     showAlert: true
                 })
             } else if (res.data.msg === 'loginsuccess'){
-                this.props.history.push('/Home')
+                // this.setSession(res)
+                localStorage.setItem('email', res.data.email);
+                this.props.loggedIn()
+                this.props.history.push('/home')
             }
         })
     }
+
+    // setSession = (res) => {
+    //     let expiresAt = JSON.stringify((res.expiresIn * 1000) + new Date().getTime());
+    //     localStorage.setItem('name', res.data.user);
+    //     // this.props.history.push('/home')
+    //   }
 
     loginSubmit = (event)=>{
         event.preventDefault();
         const email = event.target[0].value
         const password = event.target[1].value
-        console.log(email)
-        console.log(password)
+        // console.log(email)
+        // console.log(password)
         this.login({
             email: email,
             password: password

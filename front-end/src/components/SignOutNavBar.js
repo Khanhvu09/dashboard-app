@@ -1,13 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
-function SignUp(props){
-    return (
-        <div>
-            <Link to='/login'>Sign In</Link>
-            <Link to='/signup'>Sign Up</Link>
-        </div>
-    )
+class SignOut extends Component{
+    logout = () => {
+        this.props.logOut()
+    }
+    render(){
+        return (
+            <div>
+                <Link to='/login' onClick={this.logout}>Logout</Link>
+            </div>
+        )
+    }
 }
 
-export default SignUp
+export default SignOut

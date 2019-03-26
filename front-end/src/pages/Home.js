@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
+import ToDo from './ToDo'
+import Weather from './Weather'
 
 class Home extends Component {
-    constructor(){
-        super()
-    }
     render(){
         return (
-            <div>Hello</div>
+            <div className="container">
+                <ToDo />
+                <Weather />
+            </div>
         )
     }
 }
