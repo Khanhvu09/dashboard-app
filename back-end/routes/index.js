@@ -113,4 +113,24 @@ router.post('/editTask', (req,res)=>{
   })
 })
 
+router.post('/inputWeather', (req, res)=>{
+  const email = req.body.email
+  const zipCode = req.body.zipCode
+  console.log(email)
+  console.log(zipCode)
+  const insertZipQuery = `UPDATE users SET zipcode = $1 WHERE email = $2`
+  db.query(insertZipQuery, [zipCode, email]).then(()=>{
+    res.json({msg: 'zipAdded'})
+  })
+})
+
+router.post('/getWeather', (req, res)=>{
+  const email = req.body.email
+  console.log(email)
+  const selectQuery = `SELECT * FROM users WHERE email = $1`
+  db.query(selectQuery, [email]).then((results)=>{
+    res.json(results)
+  })
+})
+
 module.exports = router;

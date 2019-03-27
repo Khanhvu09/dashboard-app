@@ -14,6 +14,34 @@ class Weather extends Component {
         }
     }
 
+    componentDidMount(){
+        axios({
+            method: 'POST',
+            url: `http://localhost:4000/getWeather`,
+            data: {email: localStorage.email}
+        }).then((responseFromBackEnd)=>{
+            const zipcode = responseFromBackEnd.data[0].zipcode
+            this.setState({
+                zipCode: zipcode,
+                showWeather: true
+            })
+            const APIKEY = 'd3132c622ab3c6cb25350c27bb9e2f05'
+            const url = `http://api.openweathermap.org/data/2.5/weather?units=imperial&appid=${APIKEY}&zip=${this.state.zipCode}`
+            console.log(url)
+            axios.get(url).then((weatherData)=>{
+                let temp = `${weatherData.data.main.temp}`.substring(0,2)
+                let icon = weatherData.data.weather[0].icon
+                this.setState({
+                    name: weatherData.data.name,
+                    cloud: weatherData.data.weather[0].description,
+                    temp: temp,
+                    icon: `/weather-icons/${icon}.png`,
+                    showWeather: true
+                })
+            })
+        })
+    }
+
     handleChange = (event) => {
         console.log(event.target.value)
         this.setState({
@@ -30,8 +58,6 @@ class Weather extends Component {
         axios.get(url).then((weatherData)=>{
             let temp = `${weatherData.data.main.temp}`.substring(0,2)
             let icon = weatherData.data.weather[0].icon
-            // num.toString()
-            // num.substring(0,2)
             this.setState({
                 name: weatherData.data.name,
                 cloud: weatherData.data.weather[0].description,
@@ -39,7 +65,14 @@ class Weather extends Component {
                 icon: `/weather-icons/${icon}.png`,
                 showWeather: true
             })
-            console.log(this.state.icon)
+        })
+        axios({
+            method: 'POST',
+            url: `http://localhost:4000/inputWeather`,
+            data: {
+                zipCode: this.state.zipCode,
+                email: localStorage.email
+            }
         })
     }
 
