@@ -9,40 +9,32 @@
 }
 
 .todo-container {
-  width: 25%;
-  height: 200px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: auto;
 }
 #task-input {
+  display: flex; 
+  flex-direction: column;
   width: 100%;
   border: none;
   border-bottom: 1px solid rgb(121, 119, 119);
   outline: none
-  /* display: flex; */
 }
 #todo-form {
-  width: 80%;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-top: 10px;
 }
 table  {
-  width: 95%;
+  width: 80%;
   border-collapse: collapse;
-}
-table thead {
-  /* border-bottom: 1px solid black; */
-}
-
-table tbody {
-  position: relative;
+  text-align: center;
+  margin-top: 50px;
 }
 
-#table-row td{
-  padding: 5px;
-  border-bottom: 1px solid black;
-}
 .modal {
   position: fixed;
   top: 0;

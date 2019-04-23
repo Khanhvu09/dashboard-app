@@ -6,7 +6,6 @@ import './Nav.css'
 
 class NavBar extends Component {
     render(){
-        // if (localStorage.name === undefined){
         if (this.props.loggedIn === false && localStorage.email === undefined){
             return (
                 <div className="navbar">

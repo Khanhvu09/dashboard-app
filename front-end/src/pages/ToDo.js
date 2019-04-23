@@ -131,15 +131,15 @@ class ToDo extends Component {
                 <Modal show={this.state.show}>
                     <div>
                         <form onSubmit={this.editTask}>
-                            <input type='text' onChange={this.handleTaskEdit} placeholder='New Task' value={this.state.editTask}/>
-                            <input type='date' onChange={this.handleDateEdit} value={this.state.editDate || ''}/>
+                            <input type='text' onChange={this.handleTaskEdit} placeholder='New Task' value={this.state.editTask} required/>
+                            <input type='date' onChange={this.handleDateEdit} value={this.state.editDate || ''} required/>
                             <button type="submit">Update</button>
                         </form>
                     </div>
                 </Modal>
                 <form id="todo-form" onSubmit={this.addTask}>
-                    <input type='text' id="task-input" onChange={this.handleTask} placeholder='New Task' value={this.state.task}/>
-                    <input type='date' id='date-input' onChange={this.handleDate} value={this.state.date || ''}/>
+                    <input type='text' id="task-input" onChange={this.handleTask} placeholder='New Task' value={this.state.task} required/>
+                    <input type='date' id='date-input' onChange={this.handleDate} value={this.state.date || ''} required/>
                     <button type="submit" id="submit-input">Add Task</button>
                 </form>
                 <table>

@@ -6,6 +6,8 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 import Edit from './pages/Edit'
+import HomePage from './pages/HomePage'
+import ToDo from './pages/ToDo'
 
 class App extends Component {
   constructor(){
@@ -35,12 +37,11 @@ class App extends Component {
             <NavBar loggedIn={this.state.loggedIn} logOut={this.logOut}/>
           <div>
             <Route exact path='/home' component={Home} onEnter={this.checkLoggedIn}/>
-            <Route exact path="/login" component={(routeProps)=>
-              <Login {...routeProps} loggedIn={this.logIn}/>
-            }/>
+            <Route exact path="/login" component={(routeProps)=><Login {...routeProps} loggedIn={this.logIn}/>}/>
             <Route exact path="/signup" component={SignUp}/>
-            <Route exact path='/'/>
+            <Route exact path='/' component={HomePage}/>
             <Route exact path='/edit/:id' component={Edit}/>
+            <Route exact path='/todo' component={ToDo}/>
           </div>
         </div>
       </Router>
